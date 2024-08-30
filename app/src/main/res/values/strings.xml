@@ -4,6 +4,8 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="list_fragment_label">List Fragment</string>
+
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="city">City, Country, Continent</string>
@@ -11,6 +13,27 @@
     <string name="footer_content">footer content</string>
     <string name="home_fragment_label">Home fragment</string>
     <string name="search_hint">Search...</string>
+    <string name="image_description">Description of the image</string>
+    <string name="attractions">Attractions</string>
+    <string name="dishes">Dishes</string>
+    <string name="activities">Activities</string>
+
+    <array name="attractions_list">
+        <item>Attraction 1</item>
+        <item>Attraction 2</item>
+        <item>Attraction 3</item>
+    </array>
+    <array name="dishes_list">
+        <item>Dish 1</item>
+        <item>Dish 2</item>
+        <item>Dish 3</item>
+    </array>
+
+    <array name="Activities_list">
+        <item>Activity 1</item>
+        <item>Activity 2</item>
+        <item>Activity 3</item>
+    </array>
 
 
     <string name="lorem_ipsum">

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentList">
+
+    <TextView
+        android:id="@+id/first_element"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/item_margin"
+        android:hint="@string/city"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        style="@style/DefaultTextStyle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/preview_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/paris"
+        android:contentDescription="@string/image_description"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/item_margin"
+        android:hint="@string/description"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        style="@style/DefaultTextStyle"/>
+
+    <Spinner
+        android:id="@+id/attractions"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/item_margin"
+        android:entries="@array/attractions_list"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:prompt="@string/attractions"
+        style="@style/DefaultTextStyle" />
+
+    <Spinner
+        android:id="@+id/dishes"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/item_margin"
+        android:entries="@array/dishes_list"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:prompt="@string/dishes"
+        style="@style/DefaultTextStyle"/>
+    <Spinner
+        android:id="@+id/activities"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/item_margin"
+        android:entries="@array/Activities_list"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:prompt="@string/activities"
+        style="@style/DefaultTextStyle"/>
+
+
+</LinearLayout>
