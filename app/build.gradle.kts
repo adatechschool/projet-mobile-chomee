@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "fr.eric97278.projetcollectif"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "fr.eric97278.projetcollectif"
@@ -36,6 +36,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    buildToolsVersion = "35.0.0"
 }
 
 dependencies {

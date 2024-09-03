@@ -8,13 +8,14 @@
 
     <TextView
         android:id="@+id/first_element"
+        style="@style/DefaultTextStyle"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="@dimen/item_margin"
         android:hint="@string/city"
         android:paddingStart="@dimen/default_margin"
         android:paddingEnd="@dimen/default_margin"
-        style="@style/DefaultTextStyle"/>
+        android:textColor="@color/black" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,13 +33,14 @@
 
     <TextView
         android:id="@+id/description"
+        style="@style/DefaultTextStyle"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="@dimen/item_margin"
         android:hint="@string/description"
         android:paddingStart="@dimen/default_margin"
         android:paddingEnd="@dimen/default_margin"
-        style="@style/DefaultTextStyle"/>
+        android:textColor="@color/black" />
 
     <Spinner
         android:id="@+id/attractions"
