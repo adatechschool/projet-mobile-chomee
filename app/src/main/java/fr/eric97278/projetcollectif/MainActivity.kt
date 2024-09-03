@@ -9,7 +9,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import fr.eric97278.projetcollectif.databinding.ActivityMainBinding
+import fr.eric97278.projetcollectif.network.destinationsApi
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +35,13 @@ class MainActivity : AppCompatActivity() {
 //                .setAction("Action", null)
 //                .setAnchorView(R.id.fab).show()
 //        }
+        getDestinations()
+    }
+
+    private fun getDestinations() {
+        val listResult = destinationsApi.retrofitService.getDestinations()
+        val text = findViewById<TextView>(R.id.first_element)
+        text.text = listResult.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
