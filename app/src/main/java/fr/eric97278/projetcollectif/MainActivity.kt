@@ -3,6 +3,7 @@ package fr.eric97278.projetcollectif
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -32,52 +33,78 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-//        binding.fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null)
-//                .setAnchorView(R.id.fab).show()
-//        }
         getData()
     }
-private fun getData() {
-    val titleView = findViewById<TextView>(R.id.first_element);
-    val descriptionView = findViewById<TextView>(R.id.description);
-    //val attractionsView = findViewById<Spinner>(R.id.attractions);
-    //val dishesView = findViewById<Spinner>(R.id.dishes);
-    //val activitiesView = findViewById<Spinner>(R.id.activities);
 
+    private fun getData() {
+        val titleView = findViewById<TextView>(R.id.first_element)
+        val descriptionView = findViewById<TextView>(R.id.description)
+        val attractionsView = findViewById<Spinner>(R.id.attractions)
+        val dishesView = findViewById<Spinner>(R.id.dishes)
+        val activitiesView = findViewById<Spinner>(R.id.activities)
 
-    // Instantiate the RequestQueue.
+        // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(this)
         val url = "https://freetestapi.com/api/v1/destinations/1"
 
-// Request a string response from the provided URL.
-        val stringRequest = JsonObjectRequest(
-            Request.Method.GET, url,null,
+        // Request a JSON response from the provided URL.
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
             { response ->
                 val name = response.getString("name")
                 val country = response.getString("country")
-//                val image = response.getString("image")
                 val continent = response.getString("continent")
                 val description = response.getString("description")
-//                val attractions = response.getJSONArray("attractions")
-//                val dishes = response.getJSONArray("dishes")
-//                val activities = response.getJSONArray("activities")
 
-               // Display the first 500 characters of the response string.
+                // Set TextView content
                 titleView.text = "$name; $country; $continent"
                 descriptionView.text = description
-//                attractionsView.li = "$attractions"
-//                dishesView.text = "$dishes"
-//                activitiesView.text = "$activities"
 
+                // Convert JSONArrays to Lists safely
+                val attractionsList = ArrayList<String>()
+                if (response.has("top_attractions")) {  // Check if key exists
+                    val attractions = response.getJSONArray("top_attractions")
+                    for (i in 0 until attractions.length()) {
+                        attractionsList.add(attractions.getString(i))
+                    }
+                }
 
+                val dishesList = ArrayList<String>()
+                if (response.has("local_dishes")) {  // Check if key exists
+                    val dishes = response.getJSONArray("local_dishes")
+                    for (i in 0 until dishes.length()) {
+                        dishesList.add(dishes.getString(i))
+                    }
+                }
+
+                val activitiesList = ArrayList<String>()
+                if (response.has("activities")) {  // Check if key exists
+                    val activities = response.getJSONArray("activities")
+                    for (i in 0 until activities.length()) {
+                        activitiesList.add(activities.getString(i))
+                    }
+                }
+
+                // Create Adapters for Spinners
+                val attractionsAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, attractionsList)
+                attractionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                attractionsView.adapter = attractionsAdapter
+
+                val dishesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, dishesList)
+                dishesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                dishesView.adapter = dishesAdapter
+
+                val activitiesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, activitiesList)
+                activitiesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                activitiesView.adapter = activitiesAdapter
             },
-            { titleView.text = "That didn't work!" })
+            {
+                titleView.text = "That didn't work!"
+            })
 
-// Add the request to the RequestQueue.
-        queue.add(stringRequest)
-}
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
