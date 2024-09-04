@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import fr.eric97278.projetcollectif.databinding.ActivityMainBinding
+import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         val attractionsView = findViewById<Spinner>(R.id.attractions)
         val dishesView = findViewById<Spinner>(R.id.dishes)
         val activitiesView = findViewById<Spinner>(R.id.activities)
+        val imageView = findViewById<ImageView>(R.id.preview_image)
 
         // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(this)
@@ -55,10 +58,21 @@ class MainActivity : AppCompatActivity() {
                 val country = response.getString("country")
                 val continent = response.getString("continent")
                 val description = response.getString("description")
+                val image = response.getString("image")
 
                 // Set TextView content
                 titleView.text = "$name; $country; $continent"
                 descriptionView.text = description
+                //imageView.text = "$image"
+
+                // Dans votre méthode pour récupérer les données de l'API
+                Glide.with(this)
+                    .load(image)
+                    .into(imageView)
+
+
+
+
 
                 // Convert JSONArrays to Lists safely
                 val attractionsList = ArrayList<String>()
@@ -128,3 +142,5 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 }
+
+
